@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MailForge: AI-Powered Cold Email Generator</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">✉</span>
+      <div class="brand-text"><span class="brand-name">MailForge</span><span class="brand-tagline">AI-Powered Cold Email Generator</span></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#generate-section" class="nav-item active">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Generate</span>
+      </a>
+      <a href="#settings-section" class="nav-item">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Settings</span>
+      </a>
+      <a href="#help-section" class="nav-item">
+        <i class="fa-solid fa-circle-question"></i>
+        <span>Help</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>MailForge v1.0</span>
+    </div>
+  </aside>
+
+  <!-- ── Main ───────────────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- Toast -->
+    <div id="toastMessage" class="toast-bar d-none"></div>
+
+    <!-- ── Generate Section ────────────────────────────────────── -->
+    <section id="generate-section" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Generate Cold Email</h1>
+        <p class="section-subtitle">Paste a job listing URL — we'll handle the rest.</p>
+      </div>
+
+      <div class="card primary-card">
+        <div class="card-body">
+          <label class="form-label fw-semibold" for="urlInput">Job Listing URL</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
+            <input
+              id="urlInput"
+              type="url"
+              class="form-control"
+              placeholder="https://jobs.company.com/software-engineer-123"
+              autocomplete="off"
+            />
+            <button id="generateBtn" class="btn btn-primary px-4">
+              <i class="fa-solid fa-bolt me-2"></i>Generate
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div id="progressSection" class="card d-none">
+        <div class="card-body">
+          <p id="progressLabel" class="text-muted small mb-2">Starting…</p>
+          <div class="progress" style="height:8px;">
+            <div
+              id="progressBar"
+              class="progress-bar progress-bar-striped progress-bar-animated"
+              role="progressbar"
+              style="width:0%"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="errorSection" class="alert alert-danger d-none" role="alert">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        <span id="errorMessage"></span>
+      </div>
+
+      <!-- Results -->
+      <div id="resultsSection" class="d-none">
+        <div class="row g-3">
+
+          <!-- Job Details -->
+          <div class="col-lg-5">
+            <div class="card h-100">
+              <div class="card-header"><i class="fa-solid fa-briefcase me-2"></i>Job Details</div>
+              <div class="card-body">
+                <div class="detail-row">
+                  <span class="detail-label">Role</span>
+                  <span id="outRole" class="detail-value">—</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Experience</span>
+                  <span id="outExperience" class="detail-value">—</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Skills</span>
+                  <div id="outSkills"></div>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Description</span>
+                  <p id="outDescription" class="detail-value small text-muted mb-0" style="max-height:120px;overflow-y:auto;">—</p>
+                </div>
+                <hr/>
+                <span class="detail-label">Portfolio Used</span>
+                <div id="outLinks" class="mt-1 small"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Preview -->
+          <div class="col-lg-7">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-envelope-open-text me-2"></i>Generated Email</span>
+                <div class="d-flex gap-2">
+                  <button id="copyEmailBtn" class="btn btn-sm btn-outline-secondary">
+                    <i class="fa-regular fa-copy me-1"></i>Copy
+                  </button>
+                  <button id="downloadEmailBtn" class="btn btn-sm btn-outline-primary">
+                    <i class="fa-solid fa-download me-1"></i>Download
+                  </button>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <pre id="outEmail" class="email-pre"></pre>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Settings Section ─────────────────────────────────────── -->
+    <section id="settings-section" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Company Settings</h1>
+        <p class="section-subtitle">These values are sent with every email generation request.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="settingsCompanyName">Company Name</label>
+              <input id="settingsCompanyName" type="text" class="form-control" placeholder="TechCorp Solutions" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="settingsFounderName">Your Name</label>
+              <input id="settingsFounderName" type="text" class="form-control" placeholder="Jane Smith" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="settingsCompanyDesc">Company Description</label>
+              <textarea id="settingsCompanyDesc" class="form-control" rows="2"
+                placeholder="a leading AI & software consulting company specialising in automation"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="settingsPortfolioLink1">Portfolio Link 1 <span class="text-muted">(optional)</span></label>
+              <input id="settingsPortfolioLink1" type="url" class="form-control" placeholder="https://your-project.com" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="settingsPortfolioLink2">Portfolio Link 2 <span class="text-muted">(optional)</span></label>
+              <input id="settingsPortfolioLink2" type="url" class="form-control" placeholder="https://your-other-project.com" />
+            </div>
+            <div class="col-12">
+              <button id="saveSettingsBtn" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk me-2"></i>Save Settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Help Section ──────────────────────────────────────────── -->
+    <section id="help-section" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Help</h1>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5>How it works</h5>
+          <ol class="ps-3">
+            <li>Configure your company in <strong>Settings</strong>.</li>
+            <li>Paste a job listing URL in <strong>Generate</strong>.</li>
+            <li>The app scrapes the page, extracts job details, matches your portfolio, and writes a cold email.</li>
+            <li>Copy or download the result.</li>
+          </ol>
+
+          <hr />
+
+          <h5>Prerequisites</h5>
+          <ul class="ps-3">
+            <li>API server must be running: <code>python -m app.api</code></li>
+            <li><code>GROQ_API_KEY</code> must be set in your <code>.env</code> file.</li>
+          </ul>
+
+          <hr />
+
+          <h5>Troubleshooting</h5>
+          <table class="table table-sm">
+            <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr><td>URL fails to load</td><td>Use a direct job-page URL, not a search results page</td></tr>
+              <tr><td>Cannot reach API</td><td>Start the server: <code>python -m app.api</code></td></tr>
+              <tr><td>API key error</td><td>Check <code>GROQ_API_KEY</code> in your <code>.env</code></td></tr>
+              <tr><td>Wrong portfolio links</td><td>Set overrides in Settings</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
