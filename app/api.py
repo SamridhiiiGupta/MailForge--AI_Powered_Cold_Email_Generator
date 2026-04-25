@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, HttpUrl, field_validator
 
-from app.config import API_HOST, API_PORT, ENV
+from app.config import API_HOST, API_PORT, ENV, ALLOWED_ORIGINS
 from app.services.llm_service import LLMService
 from app.services.portfolio_service import PortfolioService
 from app.services.scraper import ScraperError, scrape_url
@@ -34,7 +34,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "http://127.0.0.1:8080"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
 )

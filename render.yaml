@@ -1,0 +1,40 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# render.yaml — Render deployment configuration
+# This file tells Render exactly how to build and run MailForge's backend.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  - type: web
+    name: mailforge-api
+    env: python
+    plan: free
+    rootDir: .
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.api:app --host 0.0.0.0 --port $PORT"
+
+    envVars:
+      # REQUIRED — Set this in the Render dashboard after deploying
+      - key: GROQ_API_KEY
+        sync: false          # Never synced from file — must be set in dashboard
+
+      # Set this to your Vercel frontend URL after deploying the frontend
+      - key: ALLOWED_ORIGINS
+        sync: false          # e.g., https://mailforge.vercel.app
+
+      # App config
+      - key: ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: LLM_MODEL
+        value: llama-3.1-8b-instant
+      - key: LLM_TEMPERATURE
+        value: "0"
+
+      # Company defaults (override in dashboard or leave for users to set via UI)
+      - key: COMPANY_NAME
+        value: "Your Company Name"
+      - key: FOUNDER_NAME
+        value: "Your Name"
+      - key: COMPANY_DESCRIPTION
+        value: "a leading technology consulting company"

@@ -4,7 +4,11 @@
  * All API calls preserved, zero Bootstrap dependency
  */
 
-const API_BASE = "http://localhost:8000";
+// Auto-detects local vs production. Update frontend/config.js with your Render URL after deployment.
+const _isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const API_BASE = _isLocal
+  ? "http://localhost:8000"
+  : (window.MAILFORGE_CONFIG?.API_URL || "");
 
 /* ══════════════════════════════════════════════════════
    ROUTER
