@@ -99,7 +99,7 @@ When a company posts a job listing, it signals a need — they're hiring because
 ### ⚙️ Settings Page — Company Configuration
 > Configure your company name, your name, description, and optional portfolio link overrides. Settings persist in session storage — set once, use everywhere.
 
-![Settings Page](docs/screenshots/settings.png)
+![Settings Page](images/screencapture-localhost-8080-2026-04-25-09_11_29.png)
 
 ---
 
