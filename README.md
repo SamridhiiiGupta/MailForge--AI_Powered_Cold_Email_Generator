@@ -108,8 +108,6 @@ When a company posts a job listing, it signals a need — they're hiring because
 
 ![Help Page](images/screencapture-localhost-8080-2026-04-25-09_11_38.png)
 
-> 📌 **To add real screenshots:** Run the app locally, take screenshots of each page, save them to `docs/screenshots/`, and replace the image paths above.
-
 ---
 
 ## 🛠️ Tech Stack
