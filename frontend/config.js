@@ -13,5 +13,5 @@
 window.MAILFORGE_CONFIG = {
   // Replace this with your Render backend URL after deployment.
   // Leave unchanged for local development — localhost is used automatically.
-  API_URL: "https://YOUR-RENDER-URL.onrender.com"
+  API_URL: "https://mailforge-jble.onrender.com"
 };
