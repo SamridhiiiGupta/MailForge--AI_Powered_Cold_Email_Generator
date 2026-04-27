@@ -1,5 +1,4 @@
 {
-  "comment": "Vercel configuration for MailForge frontend (static HTML/CSS/JS)",
   "outputDirectory": "frontend",
   "cleanUrls": true,
   "trailingSlash": false,
