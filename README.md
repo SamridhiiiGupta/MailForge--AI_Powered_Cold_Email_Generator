@@ -92,23 +92,21 @@ When a company posts a job listing, it signals a need — they're hiring because
 ### 🏠 Generate Page — Main Email Generator
 > The core workspace. Paste a URL, hit Generate, and watch the AI pipeline run in real time. Results show extracted job details on the left and the generated email on the right.
 
-![Generate Page](docs/screenshots/generate.png)
+![Generate Page](images/screencapture-localhost-8080-2026-04-25-09_11_17.png)
 
 ---
 
 ### ⚙️ Settings Page — Company Configuration
 > Configure your company name, your name, description, and optional portfolio link overrides. Settings persist in session storage — set once, use everywhere.
 
-![Settings Page](docs/screenshots/settings.png)
+![Settings Page](images/screencapture-localhost-8080-2026-04-25-09_11_29.png)
 
 ---
 
 ### ❓ Help Page — Setup & Troubleshooting
 > Step-by-step how-it-works guide, prerequisites checklist, and a troubleshooting reference table.
 
-![Help Page](docs/screenshots/help.png)
-
-> 📌 **To add real screenshots:** Run the app locally, take screenshots of each page, save them to `docs/screenshots/`, and replace the image paths above.
+![Help Page](images/screencapture-localhost-8080-2026-04-25-09_11_38.png)
 
 ---
 
