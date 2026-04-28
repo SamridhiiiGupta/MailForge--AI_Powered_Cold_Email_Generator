@@ -13,7 +13,7 @@
 
 **Paste a job listing URL. Get a personalised cold email in seconds.**
 
-[🚀 Live Demo](#-live-demo) • [⚙️ Setup](#%EF%B8%8F-local-setup) • [🌍 Deploy](#-deployment) • [📖 Docs](#-documentation)
+[🚀 Live Demo](https://mailforge-ai-powered-cold-email-gen-lake.vercel.app) • [⚙️ Setup](#%EF%B8%8F-local-setup) • [🌍 Deploy](#-deployment) • [📖 Docs](#-documentation)
 
 ---
 
@@ -92,21 +92,23 @@ When a company posts a job listing, it signals a need — they're hiring because
 ### 🏠 Generate Page — Main Email Generator
 > The core workspace. Paste a URL, hit Generate, and watch the AI pipeline run in real time. Results show extracted job details on the left and the generated email on the right.
 
-![Generate Page](images/screencapture-localhost-8080-2026-04-25-09_11_17.png)
+![Generate Page](docs/screenshots/generate.png)
 
 ---
 
 ### ⚙️ Settings Page — Company Configuration
 > Configure your company name, your name, description, and optional portfolio link overrides. Settings persist in session storage — set once, use everywhere.
 
-![Settings Page](images/screencapture-localhost-8080-2026-04-25-09_11_29.png)
+![Settings Page](docs/screenshots/settings.png)
 
 ---
 
 ### ❓ Help Page — Setup & Troubleshooting
 > Step-by-step how-it-works guide, prerequisites checklist, and a troubleshooting reference table.
 
-![Help Page](images/screencapture-localhost-8080-2026-04-25-09_11_38.png)
+![Help Page](docs/screenshots/help.png)
+
+> 📌 **To add real screenshots:** Run the app locally, take screenshots of each page, save them to `docs/screenshots/`, and replace the image paths above.
 
 ---
 
@@ -156,7 +158,7 @@ When a company posts a job listing, it signals a need — they're hiring because
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/mailforge.git
+git clone https://github.com/SamridhiiiGupta/MailForge--AI_Powered_Cold_Email_Generator.git
 cd mailforge
 ```
 
@@ -223,7 +225,7 @@ git init
 git add .
 git commit -m "feat: initial MailForge commit"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/mailforge.git
+git remote add origin https://github.com/SamridhiiiGupta/MailForge--AI_Powered_Cold_Email_Generator.git
 git push -u origin main
 ```
 
@@ -235,14 +237,14 @@ git push -u origin main
 4. Add environment variables in the Render dashboard:
    - `GROQ_API_KEY` → your Groq key
    - `ALLOWED_ORIGINS` → (fill in after Step 3)
-5. Click **Deploy** — copy the URL: `https://mailforge-api.onrender.com`
+5. Click **Deploy** — copy the URL: `https://mailforge-jble.onrender.com`
 
 ### Step 3 — Configure Frontend API URL
 
 Open `frontend/config.js` and replace the placeholder:
 ```js
 window.MAILFORGE_CONFIG = {
-  API_URL: "https://mailforge-api.onrender.com"  // ← your actual Render URL
+  API_URL: "https://mailforge-jble.onrender.com"  // ← your actual Render URL
 };
 ```
 
@@ -258,13 +260,13 @@ git push
 1. Go to [vercel.com](https://vercel.com) → **Add New Project**
 2. Import your GitHub repo
 3. Vercel detects `vercel.json` — no config needed
-4. Click **Deploy** — copy the URL: `https://mailforge.vercel.app`
+4. Click **Deploy** — copy the URL: `https://mailforge-ai-powered-cold-email-gen-lake.vercel.app`
 
 ### Step 5 — Update CORS on Render
 
 Go to Render dashboard → your service → **Environment** and update:
 ```
-ALLOWED_ORIGINS = https://mailforge.vercel.app
+ALLOWED_ORIGINS = https://mailforge-ai-powered-cold-email-gen-lake.vercel.app
 ```
 
 Click **Save** → Render redeploys automatically. ✅
@@ -297,6 +299,8 @@ Expected: **15 tests passing**
 ## 📖 Documentation
 
 Full technical documentation available in [`docs/MailForge_Documentation.docx`](docs/MailForge_Documentation.docx)
+
+**GitHub Repository:** [SamridhiiiGupta/MailForge--AI_Powered_Cold_Email_Generator](https://github.com/SamridhiiiGupta/MailForge--AI_Powered_Cold_Email_Generator)
 
 ---
 
