@@ -92,7 +92,7 @@ When a company posts a job listing, it signals a need — they're hiring because
 ### 🏠 Generate Page — Main Email Generator
 > The core workspace. Paste a URL, hit Generate, and watch the AI pipeline run in real time. Results show extracted job details on the left and the generated email on the right.
 
-![Generate Page](docs/screenshots/generate.png)
+![Generate Page](images/screencapture-localhost-8080-2026-04-25-09_11_17.png)
 
 ---
 
