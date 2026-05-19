@@ -302,12 +302,6 @@ Full technical documentation available in [`docs/MailForge_Documentation.docx`](
 
 ---
 
-## 📄 License
-
-MIT — see [LICENSE](LICENSE).
-
----
-
 <div align="center">
 
 Built with ☕ and LLaMA 3.1 by **Samridhi Gupta**
